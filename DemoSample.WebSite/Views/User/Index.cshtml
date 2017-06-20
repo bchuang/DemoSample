@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Page Header -->
+<div class="container">
+    <header class="page-header">
+        <div class="branding">
+            <img src="https://vuejs.org/images/logo.png" alt="Logo" title="Home page" class="logo" />
+            <h1>Vue.js User CRUD Sample</h1>
+        </div>
+    </header>
+    <main id="app">
+        <div class="actions">
+            <a href="/demo/User/Register" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span>
+                Add user
+            </a>
+        </div>
+        <div class="filters row">
+            <div class="form-group col-sm-3">
+                <label for="search-element">user name</label>
+                <input v-model="searchKey" class="form-control" id="search-element" requred />
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Account</th>
+                    <th class="col-sm-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in users | filterBy searchKey in 'name'">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.acct }}</td>
+                    <td>
+                        <a class="btn btn-warning btn-xs" v-on:click="edit_user(user.acct)">Edit</a>
+                        <a class="btn btn-danger btn-xs" v-on:click="delete_user(user.acct)">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+<script src="~/Scripts/Modules/User/Base.js"></script>
+<script src="~/Scripts/Modules/User/Index.js"></script>
+
+<!-- Template List -->
+@*<template id="user-list">
+        <div class="actions">
+            <a href="Register" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span>
+                Add user
+            </a>
+        </div>
+        <div class="filters row">
+            <div class="form-group col-sm-3">
+                <label for="search-element">user name</label>
+                <input v-model="searchKey" class="form-control" id="search-element" requred />
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Account</th>
+                    <th>Memo</th>
+                    <th class="col-sm-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in users | filterBy searchKey in 'name'">
+                    <td>
+                        <a v-link="{name: 'user', params: {user_id: user.id}}">{{ user.name }}</a>
+                    </td>
+                    <td>{{ user.acct }}</td>
+                    <td>
+                        {{ user.memo }}
+                    </td>
+                    <td>
+                        <a class="btn btn-warning btn-xs" v-link="{name: 'user-edit', params: {user_id: user.id}}">Edit</a>
+                        <a class="btn btn-danger btn-xs" v-link="{name: 'user-delete', params: {user_id: user.id}}">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </template>*@
