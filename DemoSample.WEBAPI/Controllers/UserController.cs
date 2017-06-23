@@ -38,7 +38,7 @@ namespace DemoSample.WEBAPI.Controllers
         /// <summary> 新增使用者 </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public HttpResponseMessage Post([FromBody]User user)
+        public HttpResponseMessage Post([FromBody]UserModel user)
         {
             return TryCatch(() => userManager.Add(user));
         }
@@ -54,7 +54,7 @@ namespace DemoSample.WEBAPI.Controllers
         /// <summary> 更新使用者 </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public HttpResponseMessage Put([FromBody]User user)
+        public HttpResponseMessage Put([FromBody]UserModel user)
         {
             return TryCatch(() => userManager.Update(user));
         }

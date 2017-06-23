@@ -3,13 +3,19 @@ var acct = getQueryString('acct');
 var vue = new Vue({
     el: '#app', //網頁最外層的 id，所有 vue 操控的部分，皆要寫在裡面
     data: {
+        //網頁用到的資料都放在這
         user:
         {
             id: '',
             name: '',
             acct: ''
-        }
-        //網頁用到的資料都放在這
+        },
+        validated: {
+            message: '',
+            id: [],
+            acct: [],
+            name: [],
+        },
     },
     created: function () {
         // 網頁載入完成，先執行的 function 內容寫在這(像 jQ 的 .ready())
@@ -29,6 +35,10 @@ var vue = new Vue({
             this.$http.put($ApiURL, vue.user).then(function (response) {
                 location.href = "/demo";
             }, function (error) {
+                vue.validated.message = error.body.message;
+                vue.validated.id = error.body.modelState['user.id'];
+                vue.validated.acct = error.body.modelState['user.Acct'];
+                vue.validated.name = error.body.modelState['user.Name'];
                 console.log(error.statusText);
             });
         },

@@ -13,12 +13,24 @@
         <h2>Edit user</h2>
         <form>
             <div class="form-group">
-                <label for="edit-name">Name</label>
-                <input class="form-control" id="edit-name" v-model="user.name" required />
+                <label for="edit-acct">Acct</label>
+                <input class="form-control" id="edit-acct" v-model="user.acct" disabled />
+                <div style="color:red" v-if="validated.acct.length>0">
+                    驗證:
+                    <span v-for="item in validated.acct">
+                        {{item}}
+                    </span>
+                </div>
             </div>
             <div class="form-group">
-                <label for="edit-acct">acct</label>
-                <input class="form-control" id="edit-acct" v-model="user.acct" disabled />
+                <label for="edit-name">Name</label>
+                <input class="form-control" id="edit-name" v-model="user.name" required />
+                <div style="color:red" v-if="validated.name.length>0">
+                    驗證:
+                    <span v-for="item in validated.name">
+                        {{item}}
+                    </span>
+                </div>
             </div>
             <button type="button" class="btn btn-primary" v-on:click="update_user">Save</button>
             <a href="/demo" class="btn btn-default">Cancel</a>

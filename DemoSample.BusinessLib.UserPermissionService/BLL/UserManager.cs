@@ -10,7 +10,7 @@ namespace DemoSample.BusinessLib.UserPermissionService.BLL
 {
     internal class UserManager : IUserManager
     {
-        public ServiceResult<User> Add(User user)
+        public ServiceResult<UserModel> Add(UserModel user)
         {
             throw new NotImplementedException();
         }
@@ -20,17 +20,17 @@ namespace DemoSample.BusinessLib.UserPermissionService.BLL
             throw new NotImplementedException();
         }
 
-        public ServiceResult<List<User>> Get()
+        public ServiceResult<List<UserModel>> Get()
         {
             throw new NotImplementedException();
         }
 
-        public ServiceResult<User> Get(string acct)
+        public ServiceResult<UserModel> Get(string acct)
         {
             throw new NotImplementedException();
         }
 
-        public ServiceResult Update(User user)
+        public ServiceResult Update(UserModel user)
         {
             throw new NotImplementedException();
         }

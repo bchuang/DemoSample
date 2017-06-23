@@ -34,7 +34,7 @@ namespace DemoSample.BusinessLib.UserPermissionService.BLL.Tests
         public void AddTest()
         {
             //Insert data
-            var addData = new User { Acct = "Test001" };
+            var addData = new UserModel { Acct = "Test001" };
             usermanager.Add(addData);
             //Get insert data, check exist
             var addedData = usermanager.Get("Test001");
@@ -70,7 +70,7 @@ namespace DemoSample.BusinessLib.UserPermissionService.BLL.Tests
         public void DeleteTest()
         {
             //Insert
-            var addData = new User { Acct = "Test001" };
+            var addData = new UserModel { Acct = "Test001" };
             usermanager.Add(addData);
             //Get data , check exist
             var addedData = usermanager.Get("Test001");

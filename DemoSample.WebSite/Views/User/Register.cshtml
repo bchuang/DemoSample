@@ -14,12 +14,24 @@
         <h2>Add new user</h2>
         <form>
             <div class="form-group">
-                <label for="add-name">Name</label>
-                <input class="form-control" id="add-name" v-model="user.name" required />
+                <label for="add-acct">Acct</label>
+                <input class="form-control" id="add-acct" v-model="user.acct" required />
+                <div style="color:red" v-if="validated.acct.length>0">
+                    驗證:
+                    <span v-for="item in validated.acct">
+                        {{item}}
+                    </span>
+                </div>
             </div>
             <div class="form-group">
-                <label for="add-acct">acct</label>
-                <input class="form-control" id="add-acct" v-model="user.acct" required />
+                <label for="add-name">Name</label>
+                <input class="form-control" id="add-name" v-model="user.name" required />
+                <div style="color:red" v-if="validated.name.length>0">
+                    驗證:
+                    <span v-for="item in validated.name">
+                        {{item}}
+                    </span>
+                </div>
             </div>
             <button type="button" class="btn btn-primary" v-on:click="create_user">Create</button>
             <a href="/demo" class="btn btn-default">Cancel</a>

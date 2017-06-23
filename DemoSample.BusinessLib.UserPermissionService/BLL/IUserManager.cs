@@ -13,23 +13,23 @@ namespace DemoSample.BusinessLib.UserPermissionService.BLL
     {
         /// <summary> 取得使用者清單 </summary>
         /// <returns></returns>
-        ServiceResult<List<User>> Get();
+        ServiceResult<List<UserModel>> Get();
 
         /// <summary> 取得使用者資訊 </summary>
         /// <param name="acct"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        ServiceResult<User> Get(string acct);
+        ServiceResult<UserModel> Get(string acct);
 
         /// <summary> 新增使用者 </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        ServiceResult<User> Add(User user);
+        ServiceResult<UserModel> Add(UserModel user);
 
         /// <summary> 更新使用者 </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        ServiceResult Update(User user);
+        ServiceResult Update(UserModel user);
 
         /// <summary> 刪除 </summary>
         /// <param name="acct"></param>

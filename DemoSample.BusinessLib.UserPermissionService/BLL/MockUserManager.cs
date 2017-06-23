@@ -11,7 +11,7 @@ namespace DemoSample.BusinessLib.UserPermissionService.BLL
 {
     internal class MockUserManager : IUserManager
     {
-        private static List<User> userList;
+        private static List<UserModel> userList;
 
         public MockUserManager()
         {
@@ -23,46 +23,46 @@ namespace DemoSample.BusinessLib.UserPermissionService.BLL
 
         private void InitialUserList()
         {
-            userList = new List<User>();
+            userList = new List<UserModel>();
 
-            userList.AddRange(new GeneratorHelper().MakeClassData(new List<User>()));
+            userList.AddRange(new GeneratorHelper().MakeClassData(new List<UserModel>()));
         }
 
-        public ServiceResult<List<User>> Get()
+        public ServiceResult<List<UserModel>> Get()
         {
-            return ServiceResult<List<User>>.Ok(userList);
+            return ServiceResult<List<UserModel>>.Ok(userList);
         }
 
-        public ServiceResult<User> Get(string acct)
+        public ServiceResult<UserModel> Get(string acct)
         {
             var data = userList.Where(o => o.Acct == acct).FirstOrDefault();
-            return ServiceResult<User>.Ok(data);
+            return ServiceResult<UserModel>.Ok(data);
         }
 
-        public ServiceResult<User> Add(User user)
+        public ServiceResult<UserModel> Add(UserModel user)
         {
             if (CheckAcctExists(user.Acct))
             {
-                //TODO 需驗證已存在，告知requester要求重新註冊
-                return ServiceResult<User>.Error("帳號已存在，請重新註冊。");
+                return ServiceResult<UserModel>.Error("帳號已存在，請重新註冊。");
             }
             else
             {
                 user.Id = Guid.NewGuid();
                 userList.Add(user);
-                return ServiceResult<User>.Ok(user);
+                return ServiceResult<UserModel>.Ok(user);
             }
         }
 
-        public ServiceResult Update(User user)
+        public ServiceResult Update(UserModel user)
         {
             if (CheckAcctExists(user.Acct))
             {
                 var data = userList.Where(o => o.Acct == user.Acct);
-                foreach (var item in userList.Where(o => o.Acct == user.Acct))
+                foreach (var item in data)
                 {
                     item.Name = user.Name;
                 }
+
                 return ServiceResult.Ok();
             }
             else

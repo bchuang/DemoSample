@@ -19,7 +19,7 @@ namespace DemoSample.WEBAPI.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.Accepted,
+                return Request.CreateResponse(HttpStatusCode.ExpectationFailed,
                     new ApiResult() { IsOk = false, Message = "Service Exception" });
             }
         }
@@ -33,7 +33,7 @@ namespace DemoSample.WEBAPI.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.Accepted,
+                return Request.CreateResponse(HttpStatusCode.ExpectationFailed,
                     new ApiResult() { IsOk = false, Message = "Service Exception" });
             }
         }
