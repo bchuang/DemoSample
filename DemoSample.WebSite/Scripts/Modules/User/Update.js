@@ -32,15 +32,18 @@ var vue = new Vue({
         },
 
         update_user: function () {
-            this.$http.put($ApiURL, vue.user).then(function (response) {
-                location.href = "/demo";
-            }, function (error) {
-                vue.validated.message = error.body.message;
-                vue.validated.id = error.body.modelState['user.id'];
-                vue.validated.acct = error.body.modelState['user.Acct'];
-                vue.validated.name = error.body.modelState['user.Name'];
-                console.log(error.statusText);
-            });
+            this.$validator.validateAll().then(() => {
+                this.$http.put($ApiURL, vue.user).then(function (response) {
+                    //console.log(response);
+                    location.href = "/demo";
+                }, function (error) {
+                    vue.validated.message = error.body.message;
+                    vue.validated.id = error.body.modelState['user.id'];
+                    vue.validated.acct = error.body.modelState['user.Acct'];
+                    vue.validated.name = error.body.modelState['user.Name'];
+                    //console.log(error.statusText);
+                });
+            }).catch(() => { });
         },
     },
     computed: {

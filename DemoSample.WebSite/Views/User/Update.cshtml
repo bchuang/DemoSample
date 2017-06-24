@@ -13,8 +13,10 @@
         <h2>Edit user</h2>
         <form>
             <div class="form-group">
-                <label for="edit-acct">Acct</label>
-                <input class="form-control" id="edit-acct" v-model="user.acct" disabled />
+                <label for="add-acct">Acct</label>
+                <input id="add-acct" name="userAcct" v-model="user.acct" v-validate="'required|min:5|max:40'" class="form-control {'input': true, 'is-danger': errors.has('userAcct') }" disabled />
+                <i v-show="errors.has('userAcct')" class="fa fa-warning"></i>
+                <span v-show="errors.has('userAcct')" class="help is-danger">{{ errors.first('userAcct') }}</span>
                 <div style="color:red" v-if="validated.acct.length>0">
                     驗證:
                     <span v-for="item in validated.acct">
@@ -23,8 +25,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="edit-name">Name</label>
-                <input class="form-control" id="edit-name" v-model="user.name" required />
+                <label for="add-name">Name</label>
+                <input id="add-name" name="username" v-model="user.name" v-validate="'required|max:40'" class="form-control {'input': true, 'is-danger': errors.has('username') }" />
+                <i v-show="errors.has('username')" class="fa fa-warning"></i>
+                <span v-show="errors.has('username')" class="help is-danger">{{ errors.first('username') }}</span>
                 <div style="color:red" v-if="validated.name.length>0">
                     驗證:
                     <span v-for="item in validated.name">

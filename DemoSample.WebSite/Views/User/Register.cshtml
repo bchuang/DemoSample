@@ -15,7 +15,9 @@
         <form>
             <div class="form-group">
                 <label for="add-acct">Acct</label>
-                <input class="form-control" id="add-acct" v-model="user.acct" required />
+                <input id="add-acct" name="userAcct" v-model="user.acct" v-validate="'required|min:5|max:40'" class="form-control {'input': true, 'is-danger': errors.has('userAcct') }" />
+                <i v-show="errors.has('userAcct')" class="fa fa-warning"></i>
+                <span v-show="errors.has('userAcct')" class="help is-danger">{{ errors.first('userAcct') }}</span>
                 <div style="color:red" v-if="validated.acct.length>0">
                     驗證:
                     <span v-for="item in validated.acct">
@@ -25,7 +27,9 @@
             </div>
             <div class="form-group">
                 <label for="add-name">Name</label>
-                <input class="form-control" id="add-name" v-model="user.name" required />
+                <input id="add-name" name="username" v-model="user.name" v-validate="'required|max:40'" class="form-control {'input': true, 'is-danger': errors.has('username') }" />
+                <i v-show="errors.has('username')" class="fa fa-warning"></i>
+                <span v-show="errors.has('username')" class="help is-danger">{{ errors.first('username') }}</span>
                 <div style="color:red" v-if="validated.name.length>0">
                     驗證:
                     <span v-for="item in validated.name">
@@ -33,6 +37,7 @@
                     </span>
                 </div>
             </div>
+
             <button type="button" class="btn btn-primary" v-on:click="create_user">Create</button>
             <a href="/demo" class="btn btn-default">Cancel</a>
         </form>
@@ -40,24 +45,3 @@
 </div>
 <script src="~/Scripts/Modules/User/Base.js"></script>
 <script src="~/Scripts/Modules/User/Register.js"></script>
-
-<!-- Template Create -->
-@*<template id="add-user">
-        <h2>Add new user</h2>
-        <form>
-            <div class="form-group">
-                <label for="add-name">Name</label>
-                <input class="form-control" id="add-name" v-model="user.name" required />
-            </div>
-            <div class="form-group">
-                <label for="add-acct">acct</label>
-                <textarea class="form-control" id="add-acct" rows="10" v-model="user.acct"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="add-memo">memo</label>
-                <input type="number" class="form-control" id="add-memo" v-model="user.memo" />
-            </div>
-            <button type="button" class="btn btn-primary">Create</button>
-            <a href="/demo" class="btn btn-default">Cancel</a>
-        </form>
-    </template>*@

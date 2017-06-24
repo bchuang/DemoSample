@@ -22,16 +22,18 @@ var vue = new Vue({
     methods: {
         //各種要用的 function 寫在這
         create_user: function () {
-            this.$http.post($ApiURL, vue.user).then(function (response) {
-                //console.log(response);
-                location.href = "/demo";
-            }, function (error) {
-                vue.validated.message = error.body.message;
-                vue.validated.id = error.body.modelState['user.id'];
-                vue.validated.acct = error.body.modelState['user.Acct'];
-                vue.validated.name = error.body.modelState['user.Name'];
-                //console.log(error.statusText);
-            });
+            this.$validator.validateAll().then(() => {
+                this.$http.post($ApiURL, vue.user).then(function (response) {
+                    //console.log(response);
+                    location.href = "/demo";
+                }, function (error) {
+                    vue.validated.message = error.body.message;
+                    vue.validated.id = error.body.modelState['user.id'];
+                    vue.validated.acct = error.body.modelState['user.Acct'];
+                    vue.validated.name = error.body.modelState['user.Name'];
+                    //console.log(error.statusText);
+                });
+            }).catch(() => { });
         },
     },
     computed: {

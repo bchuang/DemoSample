@@ -11,3 +11,7 @@
 .actions {
     padding: 10px 0;
 }
+
+.help.is-danger {
+    color: red;
+}
