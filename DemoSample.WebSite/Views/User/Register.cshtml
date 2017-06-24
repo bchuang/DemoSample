@@ -12,7 +12,7 @@
     </header>
     <main id="app">
         <h2>Add new user</h2>
-        <form>
+        <form v-on:submit="create_user">
             <div class="form-group">
                 <label for="add-acct">Acct</label>
                 <input id="add-acct" name="userAcct" v-model="user.acct" v-validate="'required|min:5|max:40'" class="form-control {'input': true, 'is-danger': errors.has('userAcct') }" />
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <button type="button" class="btn btn-primary" v-on:click="create_user">Create</button>
+            <button type="submit" class="btn btn-primary">Create</button>
             <a href="/demo" class="btn btn-default">Cancel</a>
         </form>
     </main>
