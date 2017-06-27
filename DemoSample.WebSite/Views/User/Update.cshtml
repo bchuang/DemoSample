@@ -11,7 +11,7 @@
     </header>
     <main id="app">
         <h2>Edit user</h2>
-        <form v-on:submit="update_user">
+        <form>
             <div class="form-group">
                 <label for="add-acct">Acct</label>
                 <input id="add-acct" name="userAcct" v-model="user.acct" v-validate="'required|min:5|max:40'" class="form-control {'input': true, 'is-danger': errors.has('userAcct') }" disabled />
@@ -36,7 +36,7 @@
                     </span>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-primary" v-on:click="update_user">Save</button>
             <a href="/demo" class="btn btn-default">Cancel</a>
         </form>
     </main>
