@@ -99,7 +99,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="Common\LogRequestFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\AuthorizationFilter.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

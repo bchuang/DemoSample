@@ -23,7 +23,7 @@ var vue = new Vue({
         //各種要用的 function 寫在這
         create_user: function () {
             this.$validator.validateAll().then(() => {
-                this.$http.post($ApiURL, vue.user).then(function (response) {
+                axios.post($ApiURL, vue.user).then(function (response) {
                     //console.log(response);
                     location.href = "/demo";
                 }, function (error) {

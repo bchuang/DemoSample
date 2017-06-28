@@ -20,7 +20,7 @@ var vue = new Vue({
     methods: {
         //各種要用的 function 寫在這
         get_user: function () {
-            this.$http.get($ApiURL).then(function (response) {
+            axios.get($ApiURL).then(function (response) {
                 vue.users = response.data.data;
             }, function (error) {
                 console.log(error.statusText);
@@ -30,7 +30,7 @@ var vue = new Vue({
             location.href = "/demo/user/update?acct=" + acct;
         },
         delete_user: function (acct) {
-            this.$http.delete($ApiURL, { params: { acct: acct } }).then(function (response) {
+            axios.delete($ApiURL, { params: { acct: acct } }).then(function (response) {
                 vue.get_user();
             }, function (error) {
                 console.log(error.statusText);

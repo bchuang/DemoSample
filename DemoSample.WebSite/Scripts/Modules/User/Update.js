@@ -24,7 +24,7 @@ var vue = new Vue({
     methods: {
         //各種要用的 function 寫在這
         get_user: function () {
-            this.$http.get($ApiURL, { params: { acct: acct } }).then(function (response) {
+            axios.get($ApiURL, { params: { acct: acct } }).then(function (response) {
                 vue.user = response.data.data;
             }, function (error) {
                 console.log(error.statusText);
@@ -33,7 +33,7 @@ var vue = new Vue({
 
         update_user: function () {
             this.$validator.validateAll().then(() => {
-                this.$http.put($ApiURL, vue.user).then(function (response) {
+                axios.put($ApiURL, vue.user).then(function (response) {
                     //console.log(response);
                     location.href = "/demo";
                 }, function (error) {
