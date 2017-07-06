@@ -11,52 +11,59 @@ using System.Web.Http;
 
 namespace DemoSample.WEBAPI.Controllers
 {
-    /// <summary> 使用者管理 </summary>
-    [RoutePrefix("api/User")]
-    [Route("{acct?}")]
-    [CamelCasedController]
-    public class UserController : ApiControllerBase
-    {
-        private readonly IUserManager userManager = UserPermissionServiceFactory.GetUserManager(true);
+		/// <summary> 使用者管理 </summary>
+		[RoutePrefix("api/User")]
+		[Route("{acct?}")]
+		[CamelCasedController]
+		public class UserController : ApiControllerBase
+		{
+				private IUserManager userManager;
 
-        /// <summary> 取得使用者清單 </summary>
-        /// <returns></returns>
-        public HttpResponseMessage Get()
-        {
-            return TryCatch(() => userManager.Get());
-        }
+				/// <summary> 建構子 </summary>
+				/// <param name="userManager"></param>
+				public UserController(IUserManager userManager)
+				{
+						this.userManager = userManager;
+				}
 
-        /// <summary> 取得使用者資訊 </summary>
-        /// <param name="acct"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public HttpResponseMessage Get(string acct)
-        {
-            return TryCatch(() => userManager.Get(acct));
-        }
+				/// <summary> 取得使用者清單 </summary>
+				/// <returns></returns>
+				public HttpResponseMessage Get()
+				{
+						return TryCatch(() => userManager.Get());
+				}
 
-        /// <summary> 新增使用者 </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        public HttpResponseMessage Post([FromBody]UserModel user)
-        {
-            return TryCatch(() => userManager.Add(user));
-        }
+				/// <summary> 取得使用者資訊 </summary>
+				/// <param name="acct"></param>
+				/// <param name="name"></param>
+				/// <returns></returns>
+				public HttpResponseMessage Get(string acct)
+				{
+						return TryCatch(() => userManager.Get(acct));
+				}
 
-        /// <summary> 刪除使用者 </summary>
-        /// <param name="acct"></param>
-        /// <returns></returns>
-        public HttpResponseMessage Delete(string acct)
-        {
-            return TryCatch(() => userManager.Delete(acct));
-        }
+				/// <summary> 新增使用者 </summary>
+				/// <param name="user"></param>
+				/// <returns></returns>
+				public HttpResponseMessage Post([FromBody]UserModel user)
+				{
+						return TryCatch(() => userManager.Add(user));
+				}
 
-        /// <summary> 更新使用者 </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        public HttpResponseMessage Put([FromBody]UserModel user)
-        {
-            return TryCatch(() => userManager.Update(user));
-        }
-    }
+				/// <summary> 刪除使用者 </summary>
+				/// <param name="acct"></param>
+				/// <returns></returns>
+				public HttpResponseMessage Delete(string acct)
+				{
+						return TryCatch(() => userManager.Delete(acct));
+				}
+
+				/// <summary> 更新使用者 </summary>
+				/// <param name="user"></param>
+				/// <returns></returns>
+				public HttpResponseMessage Put([FromBody]UserModel user)
+				{
+						return TryCatch(() => userManager.Update(user));
+				}
+		}
 }
