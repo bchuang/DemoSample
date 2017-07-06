@@ -40,12 +40,18 @@ namespace DemoSample.WEBAPI
 				public static void AutoFac(HttpConfiguration config)
 				{
 						var builder = new ContainerBuilder();
+#if DEBUG
+						var debugMode = true;
+#else
+						var debugMode = false;
+#endif
 
 						#region Register
 
 						builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 						builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces().AsSelf();
-						builder.RegisterInstance<IUserManager>(UserPermissionServiceFactory.GetUserManager(true));
+
+						builder.RegisterInstance<IUserManager>(UserPermissionServiceFactory.GetUserManager(debugMode));
 
 						#endregion Register
 
